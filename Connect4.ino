@@ -681,8 +681,18 @@ void loop()
 
   delay(500);
 
+  if (gameOver)
+  {
+    winDisplay();
+
+    clearBoard();
+    gameOver = false;
+  }
+
   displayPlayer2();
   oneTurn(2);
+
+  delay(500);
 
   if (gameOver)
   {
@@ -691,4 +701,6 @@ void loop()
     clearBoard();
     gameOver = false;
   }
+
 }
+
