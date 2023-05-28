@@ -398,7 +398,7 @@ int checkForWin()
 
 int checkColumn(int row, int col)
 {
-  bool rowOutOfBounds = row > sizeof(board)/sizeof(int) - 4;
+  bool rowOutOfBounds = row > sizeof(board) / sizeof(int) - 4;
   if (rowOutOfBounds)
   {
     return 0;
@@ -444,7 +444,7 @@ int checkColumn(int row, int col)
 int checkRow(int row, int col)
 {
   // end if out of bounds
-  bool colOutOfBounds = (col > sizeof(board[0])/sizeof(int) - 4) || col < 0;
+  bool colOutOfBounds = (col > sizeof(board[0]) / sizeof(int) - 4) || col < 0;
   if (colOutOfBounds)
   {
     return 0;
@@ -623,7 +623,8 @@ void oneTurn(int player)
 
   if (fullTable())
   {
-    gameOver = true;;
+    gameOver = true;
+    ;
   }
 }
 
@@ -674,72 +675,20 @@ void setup()
 
 void loop()
 {
-  /*get the X and Y for Joystick*/
-  // setJoystickValues();
-
-  // put your main code here, to run repeatedly:
-  /*
-  for (int display = 1; display <= 4; display++)
-  {
-    for (int num = 0; num <= 9; num++)
-    {
-      segDisplay(display, num);
-      delay(400);
-      clearSevSeg();
-    }
-  }*/
-  /*
-  displayPlayer1();
-  delay(1000);
-  displayPlayer2();
-  delay(1000);
-
-  drop(1, 1);
-  drop(1, 2);
-  addWin(1);
 
   displayPlayer1();
-  pickCol(1);
-
-
-      displayPlayer1();
-      delay(500);
-      displayPlayer2();
-      delay(500);
-
-      if (oneTurn(playerTurn))
-      {
-        clearBoard();
-      }
-      
-
-
-      if (playerTurn == 1)
-      {
-        playerTurn = 2;
-      }
-      else{
-        playerTurn = 1;
-      }
-      
-*/
-
-      displayPlayer1();
-      oneTurn(1);
+  oneTurn(1);
 
   delay(500);
 
   displayPlayer2();
   oneTurn(2);
-      
-      if (gameOver)
-      {
-                winDisplay();
 
-        clearBoard();
-        gameOver = false;
-      }
-      
+  if (gameOver)
+  {
+    winDisplay();
 
-
+    clearBoard();
+    gameOver = false;
+  }
 }
