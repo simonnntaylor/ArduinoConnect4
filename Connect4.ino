@@ -223,7 +223,7 @@ void winDisplay()
       {
         matrix.setLed(0, row, col, true);
       }
-      delay(20);
+      delay(10);
     }
     for (int row = 0; row < sizeof(board) / sizeof(int); row++)
     {
@@ -231,9 +231,48 @@ void winDisplay()
       {
         matrix.setLed(0, row, col, false);
       }
-      delay(20);
+      delay(10);
     }
   }
+}
+
+void winDisplay2()
+{
+  for (int i = 0; i < 5; i++)
+  {
+    for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+    {
+      for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+      {
+        if (board[row][col] != 0)
+        {
+          matrix.setLed(0, row, col, true);
+        }
+      }
+    }
+
+    delay(200);
+
+    matrix.clearDisplay(0);
+
+    delay(200);
+  }
+}
+
+void displayPlayerScore(int player)
+{
+  switch (player)
+  {
+  case 1:
+    segDisplay(1, player1Score);
+    break;
+
+  case 2:
+    segDisplay(4, player2Score);
+    break;
+  }
+
+  delay(500);
 }
 
 /*
@@ -613,18 +652,21 @@ void oneTurn(int player)
   case 1:
     addWin(1);
     gameOver = true;
+    clearSevSeg();
+    displayPlayerScore(1);
     break;
 
   case 2:
     addWin(2);
     gameOver = true;
+    clearSevSeg();
+    displayPlayerScore(2);
     break;
   }
 
   if (fullTable())
   {
     gameOver = true;
-    ;
   }
 }
 
@@ -683,7 +725,8 @@ void loop()
 
   if (gameOver)
   {
-    winDisplay();
+
+    winDisplay2();
 
     clearBoard();
     gameOver = false;
@@ -696,11 +739,9 @@ void loop()
 
   if (gameOver)
   {
-    winDisplay();
+    winDisplay2();
 
     clearBoard();
     gameOver = false;
   }
-
 }
-
