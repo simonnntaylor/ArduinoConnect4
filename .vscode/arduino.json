@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:mega",
     "configuration": "cpu=atmega2560",
-    "port": "/dev/tty.Bluetooth-Incoming-Port"
+    "port": "/dev/tty.usbmodem113101"
 }
