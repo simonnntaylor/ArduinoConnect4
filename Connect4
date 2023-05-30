@@ -71,16 +71,16 @@ void segDisplay(int display, int seg)
   switch (display)
   {
   case 1:
-    digitalWrite(display1, HIGH);
+    digitalWrite(display1, LOW);
     break;
   case 2:
-    digitalWrite(display2, HIGH);
+    digitalWrite(display2, LOW);
     break;
   case 3:
-    digitalWrite(display3, HIGH);
+    digitalWrite(display3, LOW);
     break;
   case 4:
-    digitalWrite(display4, HIGH);
+    digitalWrite(display4, LOW);
     break;
   }
 
@@ -161,11 +161,11 @@ void clearSevSeg()
 {
   for (int i = segA; i <= segG; i++)
   {
-    digitalWrite(i, HIGH);
+    digitalWrite(i, LOW);
   }
   for (int i = display1; i <= display4; i++)
   {
-    digitalWrite(i, LOW);
+    digitalWrite(i, HIGH);
   }
 }
 
