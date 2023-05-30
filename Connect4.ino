@@ -87,72 +87,72 @@ void segDisplay(int display, int seg)
   switch (seg)
   {
   case 0:
-    digitalWrite(segA, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
-    digitalWrite(segD, LOW);
-    digitalWrite(segE, LOW);
-    digitalWrite(segF, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
+    digitalWrite(segD, HIGH);
+    digitalWrite(segE, HIGH);
+    digitalWrite(segF, HIGH);
     break;
   case 1:
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
     break;
   case 2:
-    digitalWrite(segA, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segG, LOW);
-    digitalWrite(segE, LOW);
-    digitalWrite(segD, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segG, HIGH);
+    digitalWrite(segE, HIGH);
+    digitalWrite(segD, HIGH);
     break;
   case 3:
-    digitalWrite(segA, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segG, LOW);
-    digitalWrite(segC, LOW);
-    digitalWrite(segD, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segG, HIGH);
+    digitalWrite(segC, HIGH);
+    digitalWrite(segD, HIGH);
     break;
   case 4:
-    digitalWrite(segF, LOW);
-    digitalWrite(segG, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
+    digitalWrite(segF, HIGH);
+    digitalWrite(segG, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
     break;
   case 5:
-    digitalWrite(segA, LOW);
-    digitalWrite(segF, LOW);
-    digitalWrite(segG, LOW);
-    digitalWrite(segC, LOW);
-    digitalWrite(segD, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segF, HIGH);
+    digitalWrite(segG, HIGH);
+    digitalWrite(segC, HIGH);
+    digitalWrite(segD, HIGH);
     break;
   case 6:
-    digitalWrite(segA, LOW);
-    digitalWrite(segF, LOW);
-    digitalWrite(segE, LOW);
-    digitalWrite(segD, LOW);
-    digitalWrite(segC, LOW);
-    digitalWrite(segG, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segF, HIGH);
+    digitalWrite(segE, HIGH);
+    digitalWrite(segD, HIGH);
+    digitalWrite(segC, HIGH);
+    digitalWrite(segG, HIGH);
     break;
   case 7:
-    digitalWrite(segA, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
     break;
   case 8:
-    digitalWrite(segA, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
-    digitalWrite(segD, LOW);
-    digitalWrite(segE, LOW);
-    digitalWrite(segF, LOW);
-    digitalWrite(segG, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
+    digitalWrite(segD, HIGH);
+    digitalWrite(segE, HIGH);
+    digitalWrite(segF, HIGH);
+    digitalWrite(segG, HIGH);
     break;
   case 9:
-    digitalWrite(segA, LOW);
-    digitalWrite(segF, LOW);
-    digitalWrite(segG, LOW);
-    digitalWrite(segB, LOW);
-    digitalWrite(segC, LOW);
+    digitalWrite(segA, HIGH);
+    digitalWrite(segF, HIGH);
+    digitalWrite(segG, HIGH);
+    digitalWrite(segB, HIGH);
+    digitalWrite(segC, HIGH);
     break;
   }
 }
