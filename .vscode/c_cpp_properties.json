@@ -4,7 +4,7 @@
             "name": "macos-clang-arm64",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/simontaylor/Documents/Arduino/libraries/LedControl/**",
+                "C:/Users/simontaylor/Documents/Arduino/libraries/**",
                 "C:/Users/simontaylor/Documents/GitHub/ArduinoConnect4/**",
                 "/Users/simontaylor/Documents/Arduino/libraries/LedControl/src"
             ],
