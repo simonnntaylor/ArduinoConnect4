@@ -1,6 +1,14 @@
 
 
 #include <LedControl.h>
+/**
+ * This library is a library recommended by the 
+ * simulator I'm using. It allows for the displaying
+ * of the LED's on the matrix. It takes the pin
+ * numbers that the board is connected to as arguments.
+ * The only function I am using in it is a function to 
+ * either turn a single LED on or off. 
+*/
 
 /*
  * Simon Taylor
@@ -175,9 +183,9 @@ void displayPlayer1()
   digitalWrite(player2LED, LOW);
   clearSevSeg();
 
-  for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+  for (int row = 0; row < 7; row++)
   {
-    for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+    for (int col = 0; col < 8; col++)
     {
       if (board[row][col] == 1)
       {
@@ -197,9 +205,9 @@ void displayPlayer2()
   digitalWrite(player1LED, LOW);
   clearSevSeg();
 
-  for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+  for (int row = 0; row < 7; row++)
   {
-    for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+    for (int col = 0; col < 8; col++)
     {
       if (board[row][col] == 2)
       {
@@ -217,17 +225,17 @@ void winDisplay()
 {
   for (int i = 0; i < 5; i++)
   {
-    for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+    for (int row = 0; row < 7; row++)
     {
-      for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+      for (int col = 0; col < 8; col++)
       {
         matrix.setLed(0, row, col, true);
       }
       delay(10);
     }
-    for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+    for (int row = 0; row < 7; row++)
     {
-      for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+      for (int col = 0; col < 8; col++)
       {
         matrix.setLed(0, row, col, false);
       }
@@ -240,9 +248,9 @@ void winDisplay2()
 {
   for (int i = 0; i < 5; i++)
   {
-    for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+    for (int row = 0; row < 7; row++)
     {
-      for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+      for (int col = 0; col < 8; col++)
       {
         if (board[row][col] != 0)
         {
@@ -290,7 +298,6 @@ void setJoystickValues()
 
 int pickCol(int player)
 {
-  //  setJoystickValues();
 
   bool selectedCol = false;
   int col = 0;
@@ -300,8 +307,9 @@ int pickCol(int player)
     /* code */
     setJoystickValues();
     matrix.setLed(0, 7, col, true);
-    if (joystickSELECT)
+    if (joystickSELECT && !fullCol(col))
     {
+      
       drop(col, player);
       selectedCol = true;
 
@@ -309,13 +317,13 @@ int pickCol(int player)
       return col;
     }
 
-    if (joystickLEFT)
+    if (joystickLEFT && col > 0)
     {
       matrix.setLed(0, 7, col, false);
       col--;
       delay(250);
     }
-    if (joystickRIGHT)
+    if (joystickRIGHT && col < 7)
     {
       matrix.setLed(0, 7, col, false);
       col++;
@@ -330,7 +338,7 @@ int pickCol(int player)
 
 void drop(int col, int player)
 {
-  for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+  for (int row = 0; row < 7; row++)
   {
     if (board[row][col] == 0)
     {
@@ -342,7 +350,7 @@ void drop(int col, int player)
 
 bool checkCol(int col)
 {
-  for (int row = 0; row < sizeof(board) / sizeof(int); row++)
+  for (int row = 0; row < 7; row++)
   {
     if (board[row][col] != 0)
     {
@@ -367,9 +375,9 @@ void addWin(int player)
 
 void createBoard()
 { // initalize array to 0
-  for (int i = 0; i < sizeof(board) / sizeof(int); i++)
+  for (int i = 0; i < 7; i++)
   {
-    for (int j = 0; j < sizeof(board[0]) / sizeof(int); j++)
+    for (int j = 0; j < 8; j++)
     {
       board[i][j] = 0;
     }
@@ -378,9 +386,9 @@ void createBoard()
 
 void clearBoard()
 { // initalize array to 0
-  for (int i = 0; i < sizeof(board) / sizeof(int); i++)
+  for (int i = 0; i < 7; i++)
   {
-    for (int j = 0; j < sizeof(board[0]) / sizeof(int); j++)
+    for (int j = 0; j < 8; j++)
     {
       board[i][j] = 0;
     }
@@ -437,7 +445,7 @@ int checkForWin()
 
 int checkColumn(int row, int col)
 {
-  bool rowOutOfBounds = row > sizeof(board) / sizeof(int) - 4;
+  bool rowOutOfBounds = row > 7 - 4;
   if (rowOutOfBounds)
   {
     return 0;
@@ -483,7 +491,7 @@ int checkColumn(int row, int col)
 int checkRow(int row, int col)
 {
   // end if out of bounds
-  bool colOutOfBounds = (col > sizeof(board[0]) / sizeof(int) - 4) || col < 0;
+  bool colOutOfBounds = (col > 8 - 4) || col < 0;
   if (colOutOfBounds)
   {
     return 0;
@@ -530,8 +538,8 @@ int checkRow(int row, int col)
 int checkDiagonalUpAndRight(int row, int col)
 {
   // end if out of bounds
-  bool rowOutOfBounds = (row > sizeof(board) / sizeof(int) - 4) || row < 0;
-  bool colOutOfBounds = (col > sizeof(board) / sizeof(int) - 4) || col < 0;
+  bool rowOutOfBounds = (row > 7 - 4) || row < 0;
+  bool colOutOfBounds = (col > 7 - 4) || col < 0;
   if (rowOutOfBounds || colOutOfBounds)
   {
     return 0;
@@ -575,7 +583,7 @@ int checkDiagonalDownAndRight(int row, int col)
 {
   // end if out of bounds
   bool rowOutOfBounds = row < 3 || row < 0;
-  bool colOutOfBounds = (col > sizeof(board[0]) / sizeof(int) - 4) || col < 0;
+  bool colOutOfBounds = (col > 8 - 4) || col < 0;
   if (rowOutOfBounds || colOutOfBounds)
   {
     return 0;
@@ -618,7 +626,7 @@ int checkDiagonalDownAndRight(int row, int col)
 bool fullCol(int col)
 {
   bool colFULL = false;
-  for (int row = 0; row < sizeof(board) / sizeof(int) - 1; row++)
+  for (int row = 0; row < 7 - 1; row++)
   {
     if (board[row][col] != 0)
     {
@@ -629,9 +637,9 @@ bool fullCol(int col)
 
 bool fullTable()
 {
-  for (int row = 0; row < sizeof(board) / sizeof(int) - 1; row++)
+  for (int row = 0; row < 7 - 1; row++)
   {
-    for (int col = 0; col < sizeof(board[0]) / sizeof(int); col++)
+    for (int col = 0; col < 8; col++)
     {
       if (board[row][col] == 0)
       {
@@ -706,6 +714,7 @@ void setup()
 
   // clear the display
   clearSevSeg();
+  clearBoard();
 
   /*
    * setup the matrix to work
@@ -713,6 +722,8 @@ void setup()
   matrix.shutdown(0, false);
   matrix.setIntensity(0, 15);
   matrix.clearDisplay(0);
+
+
 }
 
 void loop()
@@ -726,7 +737,7 @@ void loop()
   if (gameOver)
   {
 
-    winDisplay2();
+    winDisplay();
 
     clearBoard();
     gameOver = false;
@@ -739,7 +750,7 @@ void loop()
 
   if (gameOver)
   {
-    winDisplay2();
+    winDisplay();
 
     clearBoard();
     gameOver = false;
